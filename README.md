@@ -51,7 +51,7 @@ or with Yarn:
 $ yarn add --dev drift-meta-frame
 ```
 
-## Usage
+## Usage with es modules
 
 ### Setting up your host
 
