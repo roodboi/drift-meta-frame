@@ -1,7 +1,10 @@
 [![npm version](https://badge.fury.io/js/@plugins.chat%2Fdrift-meta-frame.svg)](https://badge.fury.io/js/@plugins.chat%2Fdrift-meta-frame)
+
 # Drift meta frame
 
 [View next.js demo on StackBlitz ⚡️](https://stackblitz.com/edit/meta-frame-demo)
+
+[View this repo on StackBlitz ⚡️](https://stackblitz.com/edit/drift-meta-frame)
 
 The Drift chat widget usually requires a small snippet to be pasted on your page that essentially just stubs out an API on the window, sets up a q to process any api calls made before it has loaded, and pulls in some small initialiation code on the host page.
 
