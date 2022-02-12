@@ -1,5 +1,4 @@
-[![npm version](https://badge.fury.io/js/angular2-expandable-list.svg)](https://badge.fury.io/js/angular2-expandable-list)
-
+[![npm version](https://badge.fury.io/js/@plugins.chat%2Fdrift-meta-frame.svg)](https://badge.fury.io/js/@plugins.chat%2Fdrift-meta-frame)
 # Drift meta frame
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/webpack-webpack-js-org-5zteqj)
