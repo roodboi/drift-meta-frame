@@ -1,7 +1,37 @@
-function initializeHost({ meta_frame_origin = '/frame', log = false } = {}) {
+function initializeHost({ meta_frame_origin, log = false } = {}) {
+  if(!meta_frame_origin) {
+    throw new Error('meta_frame_origin must be provided to initializeHost')
+  }
+
   window.drift_meta_frame = {
     bounds: {},
   };
+
+  const setUpFrameAndStyles = () => {
+    const $style = document.createElement('style');
+    $style.innerHTML = `
+      #drift-meta-frame {
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+      }
+     `;
+
+    const $frame = document.createElement('iframe')
+
+    $frame.setAttribute('src', meta_frame_origin)
+    $frame.setAttribute('id', `drift-meta-frame`)
+    $frame.setAttribute('scrolling', `no`)
+    $frame.setAttribute('frameborder','0')
+
+    document.head.appendChild($style);
+    document.body.appendChild($frame);
+  }
 
   const setPointerEvents = ({ isOnDrift }) => {
     const metaFrame = document.querySelector('#drift-meta-frame');
@@ -44,6 +74,8 @@ function initializeHost({ meta_frame_origin = '/frame', log = false } = {}) {
 
     setPointerEvents({ isOnDrift });
   });
+
+  setUpFrameAndStyles()
 }
 
 export default initializeHost;

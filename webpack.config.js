@@ -10,11 +10,12 @@ const babelLoader = {
 const config = {};
 
 config.entry = {
-  main: { import: './src/index.js', filename: '../dist/main.js' },
+  main: { import: './src/index.js', filename: '../dist/index.js' },
   build: { import: './src/index.js', filename: '../test/_build.js' },
 };
 
 config.output = {
+  globalObject: 'this',
   library: {
     type: 'umd',
     name: 'driftMetaFrame',

@@ -1,9 +1,10 @@
 [![npm version](https://badge.fury.io/js/angular2-expandable-list.svg)](https://badge.fury.io/js/angular2-expandable-list)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 # Drift meta frame
 
-> The Drift chat widget usually requires a small snippet to be pasted on your page that essentially just stubs out an API on the window, sets up a q to process any api calls made before it has loaded, and pulls in some small initialiation code on the host page.
+[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/webpack-webpack-js-org-5zteqj)
+
+The Drift chat widget usually requires a small snippet to be pasted on your page that essentially just stubs out an API on the window, sets up a q to process any api calls made before it has loaded, and pulls in some small initialiation code on the host page.
 
 The initializaiton code generates 2 iframes (one for the chat window and one for the controller) and sets up a post message communication layer between the host and those iframes.
 
@@ -12,8 +13,6 @@ In some cases, larger organizations (or individuals) have security policies that
 This package aims to help solve some of those issues. Instead of bootstraping the widget by pulling in live code on the host at load-time, this package allows you to setup a single iframe that wraps the drift install (a meta frame) - it works by setting up a full screen iframe that lets drift behave as if it were loaded directly on the host, but maintains seperation and can be loaded into any other domain or source. It uses mouse move event handlers to determine wether or not we should focus on the meta frame or the host and pointer-events: none to allow for pass through back to host.
 
 Because of the use of pointer events to achieve this, browser support is limited to those that support it (all modern ones as of today 02/22) [see here](https://caniuse.com/pointer-events)
-
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/webpack-webpack-js-org-5zteqj)
 
 ## Table of contents
 
@@ -53,12 +52,6 @@ $ yarn add --dev drift-meta-frame
 ## Usage
 
 ### Setting up your host
-
-In your html/jsx etc. you need to setup the iFrame with required id of `drift-meta-frame` and the src can point to a unique source anywhere you like.
-
-```html
-    <iframe id="drift-meta-frame" src="frame.html"></iframe>
-```
 
 ```js
   import { initializeHost } from 'drift-meta-frame';
