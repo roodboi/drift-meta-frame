@@ -53,6 +53,12 @@ or with Yarn:
 $ yarn add --dev drift-meta-frame
 ```
 
+or globally via unpkg
+
+```html
+    <script src="https://unpkg.com/@plugins.chat/drift-meta-frame" type="text/javascript"></script>
+```
+
 ## Usage
 
 ### Setting up your host
