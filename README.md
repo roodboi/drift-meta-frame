@@ -92,11 +92,9 @@ $ yarn add --dev drift-meta-frame
 
 #### Options
 
-`embed_id`
-
-| Type   | Default value |
-| ------ | ------------- |
-| string | ''            |
+| Property | Type   | Default value |
+| -------- | ------ | ------------- |
+| embed_id | string | ''            |
 
 ### initializeHost
 
@@ -109,12 +107,10 @@ $ yarn add --dev drift-meta-frame
 
 #### Options
 
-`log`
-
-| Type              | Default value |
-| ----------------- | ------------- |
-| boolean           | false         |
-| meta_frame_origin | ''            |
+| Property          | Type    | Default value |
+| ----------------- | ------- | ------------- |
+| log               | boolean | false         |
+| meta_frame_origin | string  | ''            |
 
 ## License
 
