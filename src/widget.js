@@ -16,9 +16,7 @@ const insertConductor = () => {
   scriptTag.defer = 'defer';
   scriptTag.async = 'true';
   scriptTag.crossorigin = 'anonymous';
-  // scriptTag.onload = () => {
-  //   window.drift.init(embed_id);
-  // };
+
   document.body.appendChild(scriptTag);
 };
 
