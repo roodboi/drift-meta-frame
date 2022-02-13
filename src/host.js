@@ -1,20 +1,38 @@
+window.drift_meta_frame = {
+  ready: false,
+  bounds: {},
+  q: [],
+};
+
 export const drift = (...rest) => {
   const $frame = document.querySelector('#drift-meta-frame');
 
-  $frame.contentWindow.postMessage(
-    { type: 'drift_m_F::passThroughApi', data: [...rest] },
-    '*'
-  );
+  if ($frame && window.drift_meta_frame.ready) {
+    $frame.contentWindow.postMessage(
+      { type: 'drift_m_F::passThroughApi', data: [...rest] },
+      '*'
+    );
+  } else {
+    window.drift_meta_frame.q.push([...rest]);
+  }
+};
+
+const clearQ = () => {
+  // we need to knock off calls as we iterate through them
+  // so reverse the q and decrement.
+  window.drift_meta_frame.q = window.drift_meta_frame.q.reverse();
+  let i = window.drift_meta_frame.q.length;
+
+  while (i--) {
+    drift(...window.drift_meta_frame.q[i]);
+    window.drift_meta_frame.q.splice(i, 1);
+  }
 };
 
 function initializeHost({ frame_url, log = false } = {}) {
   if (!frame_url) {
     throw new Error('frame_url must be provided to initializeHost');
   }
-
-  window.drift_meta_frame = {
-    bounds: {},
-  };
 
   // minimum context needed for PB targeting.
   const getContext = () => ({
@@ -96,11 +114,16 @@ function initializeHost({ frame_url, log = false } = {}) {
     },
     'drift_m_F::on_frame_load': (data) => {
       const $frame = document.querySelector('#drift-meta-frame');
-
       $frame.contentWindow.postMessage(
         { type: 'drift_m_F::init', context: getContext() },
         '*'
       );
+
+      window.drift_meta_frame.ready = true;
+
+      // if we have picked up any calls to the drift api
+      // before it was initialized, process those now.
+      clearQ();
     },
   };
 
