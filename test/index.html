@@ -4,10 +4,16 @@
   </head>
   <body>
     <h1>host</h1>
+    <button
+      onClick="(function(){
+        window.driftMetaFrame.drift('showWelcomeMessage')
+      return false;
+  })();return false;"
+    >
+      use drift api pass through
+    </button>
     <script>
       window.driftMetaFrame.initializeHost({ log: true, frame_url: '/frame' });
-
-      // window.driftMetaFrame.drift('showWelcomeMessage');
     </script>
   </body>
 </html>
