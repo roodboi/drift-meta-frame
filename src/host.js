@@ -1,4 +1,6 @@
-if (window) {
+const inBrowser = typeof window !== 'undefined';
+
+if (inBrowser) {
   window.drift_meta_frame = {
     ready: false,
     bounds: {},
@@ -7,7 +9,7 @@ if (window) {
 }
 
 export const drift = (...rest) => {
-  if (!window) {
+  if (!inBrowser) {
     console.info('drift-meta-frame can only be run in the browser.');
     return;
   }
@@ -37,7 +39,7 @@ const clearQ = () => {
 };
 
 function initializeHost({ frame_url, log = false } = {}) {
-  if (!window) {
+  if (!inBrowser) {
     console.info('drift-meta-frame can only be run in the browser.');
     return;
   }
