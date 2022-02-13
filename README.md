@@ -57,6 +57,8 @@ $ yarn add --dev drift-meta-frame
 
 ### Setting up your host
 
+#### module
+
 ```js
   import { initializeHost } from 'drift-meta-frame';
 
@@ -68,7 +70,29 @@ $ yarn add --dev drift-meta-frame
   });
 ```
 
+#### global
+
+```html
+<html>
+  <head>
+    <script src="https://unpkg.com/@plugins.chat/drift-meta-frame" type="text/javascript"></script>
+  </head>
+  <body>
+    <h1>host</h1>
+
+    ...
+
+    <script>
+      window.driftMetaFrame.initializeHost({ log: true, frame_url: '/frame' });
+    </script>
+  </body>
+</html>
+
+```
+
 ### Setting up your frame
+
+#### module
 
 ```js
   import { initializeMetaFrame } from 'drift-meta-frame';
@@ -78,6 +102,22 @@ $ yarn add --dev drift-meta-frame
   initializeMetaFrame({
     embed_id: 'your_drift_embed_id'
   });
+```
+
+#### global
+
+```html
+<html>
+  <head>
+    <script src="https://unpkg.com/@plugins.chat/drift-meta-frame" type="text/javascript"></script>
+  </head>
+  <body>
+    <script>
+      window.driftMetaFrame.initializeMetaFrame({ embed_id: '65477u96atme' });
+    </script>
+  </body>
+</html>
+
 ```
 
 ## API
