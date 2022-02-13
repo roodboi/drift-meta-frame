@@ -1,10 +1,30 @@
-import { installDrift, installWidgetStub } from './widget.js';
+import { installDrift } from './widget.js';
 
 function initializeMetaFrame({ embed_id } = {}) {
   if (!embed_id) {
     throw new Error('you must provide a Drift embed id');
   }
 
+  // listen for messages from host
+  window.addEventListener('message', function (event) {
+    if (event.source !== window.parent) {
+      return;
+    }
+
+    const message = event.data;
+
+    // set initial context, put widget in "iframeMode", load widget
+    if (message && message.type === 'drift_m_F::init') {
+      // passing minimum context from parent primarily for playbook targeting
+      drift('setContext', message.context);
+      // using context we trigger a page event to capture it.
+      drift('page');
+      // widget go go go.
+      drift('init', embed_id);
+    }
+  });
+
+  // listen for messages from drift iframess
   window.addEventListener(
     'message',
     (event) => {
@@ -32,7 +52,7 @@ function initializeMetaFrame({ embed_id } = {}) {
         // could add height and width here to allow for sizing iframe
         // if needed to support browsers that dont support point-events. (ie10..)
         const message = {
-          event: 'drift_bounds',
+          type: 'drift_m_F::bounds',
           bounds: {
             x: closestX,
             y: closestY,
@@ -45,19 +65,30 @@ function initializeMetaFrame({ embed_id } = {}) {
     false
   );
 
+  // lisen for mouse on the frame when we are focused in it
+  // so that as soon as we are not, we can trigger focus back
+  // to the host
   document.addEventListener('mousemove', (event) => {
     const isOnDrift = event.path[0].className.includes('drift-frame');
 
     const message = {
-      event: 'drift_scroll_update',
+      type: 'drift_m_F::scroll_update',
       isOnDrift: isOnDrift,
     };
 
     window.parent.postMessage(message, '*');
   });
 
-  installWidgetStub();
-  installDrift({ embed_id });
+  // set things up
+  installDrift();
+
+  // let the host know things are ready and to send
+  // us the trigger to init drift and set context.
+  const message = {
+    type: 'drift_m_F::on_frame_load',
+  };
+
+  window.parent.postMessage(message, '*');
 }
 
 export default initializeMetaFrame;

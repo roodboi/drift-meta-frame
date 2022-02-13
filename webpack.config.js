@@ -2,9 +2,6 @@ const path = require('path');
 
 const babelLoader = {
   loader: 'babel-loader',
-  options: {
-    rootMode: 'upward',
-  },
 };
 
 const config = {};
