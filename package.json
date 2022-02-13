@@ -1,15 +1,13 @@
 {
   "name": "@plugins.chat/drift-meta-frame",
-  "version": "1.0.0",
+  "version": "1.0.0--beta.2",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start": "npm run build && serve test"
   },
-  "keywords": [
-    "drift"
-  ],
+  "keywords": ["drift", "widget", "chat"],
   "author": "",
   "license": "MIT",
   "repository": {

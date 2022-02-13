@@ -1,8 +1,6 @@
 > This package is still in beta and has not yet been tested thoroughly in a production environment.
 
-
 [![npm version](https://badge.fury.io/js/@plugins.chat%2Fdrift-meta-frame.svg)](https://badge.fury.io/js/@plugins.chat%2Fdrift-meta-frame)
-
 
 # Drift meta frame
 
