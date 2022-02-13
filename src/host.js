@@ -1,6 +1,6 @@
-function initializeHost({ meta_frame_origin, log = false } = {}) {
-  if (!meta_frame_origin) {
-    throw new Error('meta_frame_origin must be provided to initializeHost');
+function initializeHost({ frame_url, log = false } = {}) {
+  if (!frame_url) {
+    throw new Error('frame_url must be provided to initializeHost');
   }
 
   window.drift_meta_frame = {
@@ -53,7 +53,7 @@ function initializeHost({ meta_frame_origin, log = false } = {}) {
 
     const $frame = document.createElement('iframe');
 
-    $frame.setAttribute('src', meta_frame_origin);
+    $frame.setAttribute('src', frame_url);
     $frame.setAttribute('id', `drift-meta-frame`);
     $frame.setAttribute('scrolling', `no`);
     $frame.setAttribute('frameborder', '0');

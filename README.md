@@ -64,7 +64,7 @@ $ yarn add --dev drift-meta-frame
 
   initializeHost({
     log: false,
-    meta_frame_origin: 'https://mydomain.com/drift'
+    frame_url: 'https://mydomain.com/drift'
   });
 ```
 
@@ -101,16 +101,16 @@ $ yarn add --dev drift-meta-frame
 ```js
   initializeHost({
     log: false,
-    meta_frame_origin: 'https://mydomain.com/drift'
+    frame_url: 'https://mydomain.com/drift'
   });
 ```
 
 #### Options
 
-| Property          | Type    | Default value |
-| ----------------- | ------- | ------------- |
-| log               | boolean | false         |
-| meta_frame_origin | string  | ''            |
+| Property  | Type    | Default value |
+| --------- | ------- | ------------- |
+| log       | boolean | false         |
+| frame_url | string  | ''            |
 
 ## License
 
