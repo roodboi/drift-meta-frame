@@ -1,4 +1,8 @@
+> This package is still in beta and has not yet been tested thoroughly in a production environment.
+
+
 [![npm version](https://badge.fury.io/js/@plugins.chat%2Fdrift-meta-frame.svg)](https://badge.fury.io/js/@plugins.chat%2Fdrift-meta-frame)
+
 
 # Drift meta frame
 
@@ -15,7 +19,6 @@ In some cases, larger organizations (or individuals) have security policies that
 This package aims to help solve some of those issues. Instead of bootstrapping the widget by pulling full-screen on the host at load-time, this package allows you to set up a single iframe that wraps the drift install (a meta frame) - it works by setting up a full-screen iframe that lets drift behave as if it were loaded directly on the host, but maintains separation and can be loaded into any other domain or source. It uses mouse move event handlers to determine whether or not we should focus on the meta frame or the host and pointer-events: none to allow for pass-through back to host.
 
 Because of the use of pointer-events to achieve this, browser support is limited to those that support it (all modern ones as of today 02/22) [see here](https://caniuse.com/pointer-events)
-
 
 ## Table of contents
 
