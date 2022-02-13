@@ -1,4 +1,4 @@
 import initializeMetaFrame from './frame';
-import initializeHost from './host';
+import initializeHost, { drift } from './host';
 
-export { initializeMetaFrame, initializeHost };
+export { initializeMetaFrame, initializeHost, drift };

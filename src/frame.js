@@ -5,6 +5,20 @@ function initializeMetaFrame({ embed_id } = {}) {
     throw new Error('you must provide a Drift embed id');
   }
 
+  const messageHandlers = {
+    'drift_m_F::init': (message) => {
+      // passing minimum context from parent primarily for playbook targeting
+      drift('setContext', message.context);
+      // using context we trigger a page event to capture it.
+      drift('page');
+      // widget go go go.
+      drift('init', embed_id);
+    },
+    'drift_m_F::passThroughApi': (message) => {
+      drift(...message.data);
+    },
+  };
+
   // listen for messages from host
   window.addEventListener('message', function (event) {
     if (event.source !== window.parent) {
@@ -13,14 +27,8 @@ function initializeMetaFrame({ embed_id } = {}) {
 
     const message = event.data;
 
-    // set initial context, put widget in "iframeMode", load widget
-    if (message && message.type === 'drift_m_F::init') {
-      // passing minimum context from parent primarily for playbook targeting
-      drift('setContext', message.context);
-      // using context we trigger a page event to capture it.
-      drift('page');
-      // widget go go go.
-      drift('init', embed_id);
+    if (message && message.type && messageHandlers[message.type]) {
+      messageHandlers[message.type](message);
     }
   });
 

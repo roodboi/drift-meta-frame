@@ -1,3 +1,12 @@
+export const drift = (...rest) => {
+  const $frame = document.querySelector('#drift-meta-frame');
+
+  $frame.contentWindow.postMessage(
+    { type: 'drift_m_F::passThroughApi', data: [...rest] },
+    '*'
+  );
+};
+
 function initializeHost({ frame_url, log = false } = {}) {
   if (!frame_url) {
     throw new Error('frame_url must be provided to initializeHost');
