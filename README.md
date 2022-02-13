@@ -158,6 +158,27 @@ or globally via unpkg
 | log       | boolean | false         |
 | frame_url | string  | ''            |
 
+### drift
+
+this export is a utility that passes any call to the drift widget api from host to frame.
+
+This uses the v2 style api which only requires that u pass the method u would like to invoke as the first argument, followed by any arguments to be applied to that method.
+
+> only to be used from the host.
+
+```js
+  drift('showWelcomeMessage');
+
+  drift('startInteraction', {
+    interactionId: interactionIdForEvent,
+    replaceActiveConversation: false
+  });
+```
+
+#### Options
+
+[widget docs](https://devdocs.drift.com/docs/widget-start)
+
 ## License
 
 [MIT License](LICENSE.md) © Dimitrios Kennedy-Kavouras
