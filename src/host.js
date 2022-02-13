@@ -1,10 +1,17 @@
-window.drift_meta_frame = {
-  ready: false,
-  bounds: {},
-  q: [],
-};
+if (window) {
+  window.drift_meta_frame = {
+    ready: false,
+    bounds: {},
+    q: [],
+  };
+}
 
 export const drift = (...rest) => {
+  if (!window) {
+    console.info('drift-meta-frame can only be run in the browser.');
+    return;
+  }
+
   const $frame = document.querySelector('#drift-meta-frame');
 
   if ($frame && window.drift_meta_frame.ready) {
@@ -30,6 +37,11 @@ const clearQ = () => {
 };
 
 function initializeHost({ frame_url, log = false } = {}) {
+  if (!window) {
+    console.info('drift-meta-frame can only be run in the browser.');
+    return;
+  }
+
   if (!frame_url) {
     throw new Error('frame_url must be provided to initializeHost');
   }
