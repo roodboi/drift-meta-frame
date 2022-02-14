@@ -183,7 +183,7 @@ this is just a convenience utility that wrapps `drift('setContext', getContext()
   updateContext()
 ```
 
-### updateContext
+### getContext
 
 If you need to adjust the context object manually, you can use this utility to get the baseline and do what you want with it.
 
