@@ -5,6 +5,7 @@ const babelLoader = {
 };
 
 const config = {};
+config.mode = 'production';
 
 config.entry = {
   main: { import: './src/index.js', filename: '../dist/index.js' },
