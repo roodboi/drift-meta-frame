@@ -44,13 +44,13 @@ These instructions will get you a copy of the project up and running on your loc
 To install and set up the library, run:
 
 ```sh
-$ npm install -S drift-meta-frame
+$ npm install drift-meta-frame
 ```
 
 or with Yarn:
 
 ```sh
-$ yarn add --dev drift-meta-frame
+$ yarn add drift-meta-frame
 ```
 
 or globally via unpkg
