@@ -117,7 +117,7 @@ or globally via unpkg
   </head>
   <body>
     <script>
-      window.driftMetaFrame.initializeMetaFrame({ embed_id: 'YOUR_EMBED_ID' });
+      window.driftMetaFrame.initializeMetaFrame({ embed_id: 'your_drift_embed_id' });
     </script>
   </body>
 </html>
