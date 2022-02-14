@@ -7,6 +7,8 @@
     <button
       onClick="(function(){
         window.driftMetaFrame.drift('showWelcomeMessage')
+        window.driftMetaFrame.updateContext();
+        console.log(window.driftMetaFrame.getContext());
       return false;
   })();return false;"
     >

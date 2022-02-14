@@ -8,6 +8,34 @@ if (inBrowser) {
   };
 }
 
+// minimum context needed for PB targeting.
+export const getContext = () => ({
+  window: {
+    location: {
+      hash: window.location.hash,
+      host: window.location.host,
+      hostname: window.location.hostname,
+      href: window.location.href,
+      origin: window.location.origin,
+      pathname: window.location.pathname,
+      port: window.location.port,
+      protocol: window.location.protocol,
+      search: window.location.search,
+    },
+    navigator: {
+      language: window.navigator.language,
+      browserLanguage: window.navigator.browserLanguage,
+      userAgent: window.navigator.userAgent,
+    },
+    innerHeight: window.innerHeight,
+    innerWidth: window.innerWidth,
+  },
+  document: {
+    title: document.title,
+    referrer: document.referrer,
+  },
+});
+
 export const drift = (...rest) => {
   if (!inBrowser) {
     console.info('drift-meta-frame can only be run in the browser.');
@@ -24,6 +52,10 @@ export const drift = (...rest) => {
   } else {
     window.drift_meta_frame.q.push([...rest]);
   }
+};
+
+export const updateContext = () => {
+  drift('setContext', getContext());
 };
 
 const clearQ = () => {
@@ -47,34 +79,6 @@ function initializeHost({ frame_url, log = false } = {}) {
   if (!frame_url) {
     throw new Error('frame_url must be provided to initializeHost');
   }
-
-  // minimum context needed for PB targeting.
-  const getContext = () => ({
-    window: {
-      location: {
-        hash: window.location.hash,
-        host: window.location.host,
-        hostname: window.location.hostname,
-        href: window.location.href,
-        origin: window.location.origin,
-        pathname: window.location.pathname,
-        port: window.location.port,
-        protocol: window.location.protocol,
-        search: window.location.search,
-      },
-      navigator: {
-        language: window.navigator.language,
-        browserLanguage: window.navigator.browserLanguage,
-        userAgent: window.navigator.userAgent,
-      },
-      innerHeight: window.innerHeight,
-      innerWidth: window.innerWidth,
-    },
-    document: {
-      title: document.title,
-      referrer: document.referrer,
-    },
-  });
 
   // setup overlay meta frame
   const setUpFrameAndStyles = () => {

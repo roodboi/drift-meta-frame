@@ -173,6 +173,57 @@ This uses the v2 style api which only requires that u pass the method u would li
   });
 ```
 
+### updateContext
+
+To maintain the ability for drift to target based on the current session information on the host, we need to pass through that context (window location, etc..). We wet that context initially on init, but in cases where your application may do a thing like routing in the browser or make updates that you would expect Drift targeting needs to be aware of, you can call this function to make sure the frame has the latest.
+
+this is just a convenience utility that wrapps `drift('setContext', getContext())`
+
+```js
+  updateContext()
+```
+
+### updateContext
+
+If you need to adjust the context object manually, you can use this utility to get the baseline and do what you want with it.
+
+```js
+  const context = {
+    ...getContext(),
+    ...overrides
+  }
+  drift('setContext', context)
+```
+
+returns ->
+
+```js
+  {window: {
+    location: {
+      hash: window.location.hash,
+      host: window.location.host,
+      hostname: window.location.hostname,
+      href: window.location.href,
+      origin: window.location.origin,
+      pathname: window.location.pathname,
+      port: window.location.port,
+      protocol: window.location.protocol,
+      search: window.location.search,
+    },
+    navigator: {
+      language: window.navigator.language,
+      browserLanguage: window.navigator.browserLanguage,
+      userAgent: window.navigator.userAgent,
+    },
+    innerHeight: window.innerHeight,
+    innerWidth: window.innerWidth,
+  },
+  document: {
+    title: document.title,
+    referrer: document.referrer,
+  }}
+```
+
 #### Options
 
 [widget docs](https://devdocs.drift.com/docs/widget-start)
